@@ -5,7 +5,7 @@
 # Scissor C, Z
 score = 0
 
-with open("input_puzzle_2.txt", 'r') as fp:
+with open("./2022/input_puzzle_2.txt", 'r') as fp:
     for line in fp:
         chars = line.split()
         if chars[1] == 'X':
@@ -39,7 +39,7 @@ print(score)
 
 score = 0
 
-with open("input_puzzle_2.txt", 'r') as fp:
+with open("./2022/input_puzzle_2.txt", 'r') as fp:
     for line in fp:
         chars = line.split()
         if chars[1] == 'X':
@@ -70,12 +70,11 @@ print(score)
 
 # %%
 
-
 f = lambda x: ('  BXCYAZAXBYCZCXAYBZ'.index(x[0]+x[2]),
                '  BXCXAXAYBYCYCZAZBZ'.index(x[0]+x[2]))
 
 print(*[
     sum(x)//2 for x in zip(
-        *map(f, open('input_puzzle_2.txt'))
+        *map(f, open('./2022/input_puzzle_2.txt'))
     )
 ])

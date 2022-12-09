@@ -50,7 +50,7 @@ def rearrange_9001(from_stack: Stack, to_stack: Stack, nr_of_crates: int):
 def get_stack_by_id_dict():
     result: dict[int, Stack] = {}
     char_matrix: list[list[str]] = []
-    with open('input_puzzle_5.txt', 'r') as fp:
+    with open('./2022/input_puzzle_5.txt', 'r') as fp:
         for line in fp:
             if line.startswith("move"):
                 break
@@ -77,7 +77,7 @@ def get_stack_by_id_dict():
 
 # %%
 stacks_by_id = get_stack_by_id_dict()
-with open('input_puzzle_5.txt', 'r') as fp:
+with open('./2022/input_puzzle_5.txt', 'r') as fp:
     for line in fp:
         if line.startswith("move"):
             split_line = line.split(" ")
@@ -93,7 +93,7 @@ print("".join(result_string))
 
 # %%
 stacks_by_id = get_stack_by_id_dict()
-with open('input_puzzle_5.txt', 'r') as fp:
+with open('./2022/input_puzzle_5.txt', 'r') as fp:
     for line in fp:
         if line.startswith("move"):
             split_line = line.split(" ")

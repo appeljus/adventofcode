@@ -1,7 +1,7 @@
 # %%
 from anytree import Node, RenderTree, PreOrderIter, PostOrderIter
 
-with open('input_puzzle_7.txt', 'r') as fh:
+with open('./2022/input_puzzle_7.txt', 'r') as fh:
     text = fh.read()
     lines = text.split('\n')
 

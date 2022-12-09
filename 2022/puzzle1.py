@@ -6,7 +6,7 @@ second_calories = 0
 third_calories = 0
 
 
-with open("input_puzzle_1.txt", 'r') as fp:
+with open("./2022/input_puzzle_1.txt", 'r') as fp:
     for line in fp:
         if line == "\n":
             if calories > third_calories:

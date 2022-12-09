@@ -9,7 +9,7 @@ char_prio = {'a': 1, 'b': 2, 'c': 3, 'd': 4, 'e': 5, 'f': 6, 'g': 7, 'h': 8, 'i'
 #%%
 
 sum_priorirty = 0
-with open('input_puzzle_3.txt', 'r') as fp:
+with open('./2022/input_puzzle_3.txt', 'r') as fp:
     for line in fp:
         line_length = len(line)
         first_half = line[:line_length // 2]
@@ -22,7 +22,7 @@ print(sum_priorirty)
 # %%
 
 sum_priorirty = 0
-with open('input_puzzle_3.txt', 'r') as fp:
+with open('./2022/input_puzzle_3.txt', 'r') as fp:
     lines = fp.readlines()
     for i in range(0, len(lines), 3):
         line_one = lines[i]

@@ -21,7 +21,7 @@ def range_intersect(range1, range2):
 
 counter = 0
 
-with open('input_puzzle_4.txt', 'r') as fp:
+with open('./2022/input_puzzle_4.txt', 'r') as fp:
     for line in fp:
         split_line = line.split(',')
         range_1_str = split_line[0].split('-')
@@ -37,7 +37,7 @@ print(counter)
 
 counter = 0
 
-with open('input_puzzle_4.txt', 'r') as fp:
+with open('./2022/input_puzzle_4.txt', 'r') as fp:
     for line in fp:
         split_line = line.split(',')
         range_1_str = split_line[0].split('-')

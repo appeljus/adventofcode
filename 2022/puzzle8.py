@@ -2,7 +2,7 @@
 import numpy
 
 matrix = []
-with open('input_puzzle_8.txt', 'r') as fp:
+with open('./2022/input_puzzle_8.txt', 'r') as fp:
     lines = fp.readlines()
     for line in lines:
         line = line.strip()
