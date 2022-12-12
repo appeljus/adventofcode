@@ -9,6 +9,7 @@ class Monkey:
     test: Callable[[int], int]
     inspection_count: int
     worry_level_drops: bool
+    common_divisor: int
 
     def __init__(
         self,
@@ -39,6 +40,8 @@ class Monkey:
                 self.inspection_count += 1
                 if self.worry_level_drops:
                     worry_level = worry_level // 3
+                else:
+                    worry_level = worry_level % self.common_divisor
                 monkey_id = self.test(worry_level)
                 if monkey_id not in result:
                     result[monkey_id] = [worry_level]
@@ -55,6 +58,9 @@ class Monkey:
 
     def __str__(self):
         return f"{self.items}, {self.operation}, {self.test}"
+
+    def set_common_divisor(self, common_divisor: int):
+        self.common_divisor = common_divisor
 
 
 def play_round(monkeys: dict[int, Monkey]):
@@ -82,11 +88,11 @@ def create_operation_from_str(raw_operation: str) -> Callable[[int], int]:
             return lambda x: x * int(raw_operation.split("*")[1].strip())
 
 
-def create_test_from_str(raw_test_lines: list[str]) -> Callable[[int], int]:
+def create_test_from_str(raw_test_lines: list[str]) -> tuple[Callable[[int], int], int]:
     divisor = int(raw_test_lines[0].split()[-1])
     true_monkey_id = int(raw_test_lines[1].split()[-1])
     false_monkey_id = int(raw_test_lines[2].split()[-1])
-    return lambda x: true_monkey_id if x % divisor == 0 else false_monkey_id
+    return (lambda x: true_monkey_id if x % divisor == 0 else false_monkey_id), divisor
 
 
 def calc_monkey_business(monkeys: dict[int, Monkey]) -> int:
@@ -98,6 +104,7 @@ def calc_monkey_business(monkeys: dict[int, Monkey]) -> int:
 
 def parse_input(worry_level_drops: bool):
     result = {}
+    divisors = []
     with open('./2022/input_puzzle_11.txt', 'r') as fp:
         monkey_input = fp.read().split("\n\n")
         for raw_monkey_str in monkey_input:
@@ -107,24 +114,26 @@ def parse_input(worry_level_drops: bool):
                 int(x.strip()) for x in raw_monkey_str_lines[1].split(":")[1].split(",")
             ]
             operation = create_operation_from_str(raw_monkey_str_lines[2].split(":")[1])
-            test = create_test_from_str(raw_monkey_str_lines[3:])
+            test, divisor = create_test_from_str(raw_monkey_str_lines[3:])
+            divisors.append(divisor)
             result[raw_monkey_id] = Monkey(starting_items, operation, test, worry_level_drops)
-    return result
+    return result, divisors
 
 
 # %%
 # Part 1
-monkeys_by_id = parse_input(True)
+monkeys_by_id, _ = parse_input(True)
 for _ in range(20):
     play_round(monkeys_by_id)
 print(calc_monkey_business(monkeys_by_id))
 
 # %%
 # Part 2
-monkeys_by_id = parse_input(False)
+monkeys_by_id, divisors = parse_input(False)
+common_divisor = math.prod(divisors)
+for monkey in monkeys_by_id.values():
+    monkey.set_common_divisor(common_divisor)
+
 for i in range(10000):
-    print(i)
     play_round(monkeys_by_id)
-    if i == 82:
-        break
 print(calc_monkey_business(monkeys_by_id))
