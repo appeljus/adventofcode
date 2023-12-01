@@ -130,3 +130,7 @@ dmypy.json
 
 # Pycharm
 .idea
+
+# Advent of Code files
+session.txt
+input.txt
